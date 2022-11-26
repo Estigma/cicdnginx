@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_995bb3af3e344cc79776e2396f45a6eb }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_5dc728a543dc40f2a2e93655871ac4d7 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_263d7dc58ea74bb4a84bbb73168c72aa }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_9e769aefee2b448eb7473f1653a41217 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_995bb3af3e344cc79776e2396f45a6eb }}/estigma/cinginx:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_263d7dc58ea74bb4a84bbb73168c72aa }}/cinginx:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'cdnginx'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_fd63a3a8db30421e983bf34b19a8ccd5 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_995bb3af3e344cc79776e2396f45a6eb }}/estigma/cinginx:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_419f0fa176e84921bef17c6733d604c5 }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_263d7dc58ea74bb4a84bbb73168c72aa }}/cinginx:${{ github.sha }}'
